@@ -1,0 +1,11 @@
+use_frameworks!
+
+platform :ios, '11.0'
+
+target 'YetIOS_Example' do
+  pod 'YetIOS', :path => '../'
+
+  # target 'YetIOS_Tests' do
+  #   inherit! :search_paths
+  # end
+end
