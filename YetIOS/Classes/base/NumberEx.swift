@@ -58,7 +58,7 @@ extension BinaryInteger {
 	}
 }
 
-extension BinaryFloatingPoint {
+public extension BinaryFloatingPoint {
 	var toString: String {
 		"\(self)"
 	}
@@ -179,13 +179,13 @@ public extension CGFloat {
 
 }
 
-extension NSNumber {
+public extension NSNumber {
 	var isInteger: Bool {
 		!stringValue.contains(".")
 	}
 }
 
-extension Int16 {
+public extension Int16 {
 	var num: NSNumber {
 		NSNumber(value: self)
 	}
@@ -197,20 +197,7 @@ extension Int16 {
 	}
 }
 
-extension Int32 {
-	var num: NSNumber {
-		NSNumber(value: self)
-	}
-	var f: CGFloat {
-		CGFloat(self)
-	}
-	var s: String {
-		"\(self)"
-	}
-
-}
-
-extension Int {
+public extension Int32 {
 	var num: NSNumber {
 		NSNumber(value: self)
 	}
@@ -223,19 +210,7 @@ extension Int {
 
 }
 
-extension UInt {
-	var num: NSNumber {
-		NSNumber(value: self)
-	}
-	var f: CGFloat {
-		CGFloat(self)
-	}
-	var s: String {
-		"\(self)"
-	}
-}
-
-extension UInt8 {
+public extension Int {
 	var num: NSNumber {
 		NSNumber(value: self)
 	}
@@ -248,7 +223,7 @@ extension UInt8 {
 
 }
 
-extension UInt16 {
+public extension UInt {
 	var num: NSNumber {
 		NSNumber(value: self)
 	}
@@ -260,7 +235,32 @@ extension UInt16 {
 	}
 }
 
-extension UInt64 {
+public extension UInt8 {
+	var num: NSNumber {
+		NSNumber(value: self)
+	}
+	var f: CGFloat {
+		CGFloat(self)
+	}
+	var s: String {
+		"\(self)"
+	}
+
+}
+
+public extension UInt16 {
+	var num: NSNumber {
+		NSNumber(value: self)
+	}
+	var f: CGFloat {
+		CGFloat(self)
+	}
+	var s: String {
+		"\(self)"
+	}
+}
+
+public extension UInt64 {
 	var num: NSNumber {
 		NSNumber(value: self)
 	}
