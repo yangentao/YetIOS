@@ -5,16 +5,18 @@
 
 import Foundation
 import UIKit
+import WebKit
 
 open class WebViewPage: TitlePage {
 
-	public let webView: UIWebView = UIWebView(frame: Rect.zero)
+	public let webView: WKWebView = WKWebView(frame: Rect.zero)
 
 	open override func onCreateContent() {
 		super.onCreateContent()
 		titleBar.back()
 		contentView.addSubview(webView)
 		webView.layout.fill()
+        webView.allowsBackForwardNavigationGestures = true 
 
 	}
 }

@@ -306,7 +306,7 @@ public extension IModel where Self: Model {
 
 	@discardableResult
 	func update(_ block: BlockVoid) -> Int {
-		guard let pkWhere = self._primaryKeyWhere else {
+		guard let _ = self._primaryKeyWhere else {
 			return 0
 		}
 		let sync = Sync(self).enter()
