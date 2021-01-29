@@ -14,6 +14,7 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		B61625D180EDBDF203AF0B6F /* Pods_YetIOS_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAB91A8F4FC2E1C110309FE3 /* Pods_YetIOS_Example.framework */; };
 		D0B6BF01B082A5DD93CC338E /* Pods_YetIOS_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CFFEF8BF51280908E904F43 /* Pods_YetIOS_Tests.framework */; };
+		E11E103B6DEA93C42DE307CE /* ViewBuilderX.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11E1DF59DFA628D781CCBF4 /* ViewBuilderX.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		AE2A1FC24293C50F4CD9B954 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		BAE81F73E9A2281B25DA4F4A /* Pods-YetIOS_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YetIOS_Tests.debug.xcconfig"; path = "Target Support Files/Pods-YetIOS_Tests/Pods-YetIOS_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		CAB91A8F4FC2E1C110309FE3 /* Pods_YetIOS_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YetIOS_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E11E1DF59DFA628D781CCBF4 /* ViewBuilderX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewBuilderX.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
+				E11E1DF59DFA628D781CCBF4 /* ViewBuilderX.swift */,
 			);
 			name = "Example for YetIOS";
 			path = YetIOS;
@@ -331,6 +334,7 @@
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				E11E103B6DEA93C42DE307CE /* ViewBuilderX.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
