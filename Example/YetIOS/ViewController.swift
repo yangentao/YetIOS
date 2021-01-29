@@ -65,6 +65,18 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         testChildren()
+
+//        let lb = UILabel(frame: .zero)
+//        self.view.addSubview(lb)
+
+
+        self.view.label { lb in
+            lb.layout.centerParent().size(300, 200)
+            lb.alignCenter()
+            lb.backgroundColor = .cyan
+            lb.text = "Hello"
+
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -72,5 +84,16 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+}
+
+extension UIView {
+
+    @discardableResult
+    func label(block: (UILabel) -> Void) -> UILabel {
+        let lb = UILabel(frame: .zero)
+        self.addSubview(lb)
+        block(lb)
+        return lb
+    }
 }
 
