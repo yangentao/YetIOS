@@ -11,69 +11,12 @@ import UIKit
 import YetIOS
 
 
-class Person: CustomStringConvertible {
-    var name: String = ""
-    var children: [Person] = []
-
-    init(_ name: String = "") {
-        self.name = name
-    }
-
-    var description: String {
-        "Person{\(name), \(children)}"
-    }
-}
-
-
-extension Person {
-
-    func buildChild(@AnyBuilder _ block: () -> AnyGroup) -> Person {
-        let ls: [Person] = buildItemsTyped(block)
-        for p in ls {
-            self.children.append(p)
-        }
-        return self
-    }
-
-    @discardableResult
-    public func apply(_ block: (Self) -> Void) -> Self {
-        block(self)
-        return self
-    }
-}
-
-
-func testChildren() {
-    var n = 0
-    let p = Person("Song").buildChild {
-        let entao = Person("Entao")
-        entao
-        testVoid()
-        if n == 0 {
-            Person("Dou")
-        }
-        Person("Chen").buildChild {
-            Person("Wen")
-        }
-        Person("Hua").buildChild {
-        }
-    }
-    print(p)
-}
-
-func testVoid() {
-    println("TestVoid")
-}
-
 class ViewController: UIViewController {
+    lazy var label: UILabel = NamedView(self, "hello")
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        testChildren()
 
-//        let lb = UILabel(frame: .zero)
-//        self.view.addSubview(lb)
 
         self.view.layoutConstraint {
             UILabel(frame: .zero).apply { lb in
@@ -95,14 +38,8 @@ class ViewController: UIViewController {
             }
         }
 
-//        self.view.apply { v in
-//            v.label { lb in
-//                lb.layout.centerParent().size(300, 200)
-//                lb.alignCenter()
-//                lb.backgroundColor = .cyan
-//                lb.text = "Hello"
-//            }
-//        }
+        log("LabelText: ", label.text)
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -112,14 +49,21 @@ class ViewController: UIViewController {
 
 }
 
-extension UIView {
 
-    @discardableResult
-    func label(block: (UILabel) -> Void) -> UILabel {
-        let lb = UILabel(frame: .zero)
-        self.addSubview(lb)
-        block(lb)
-        return lb
-    }
-}
-
+//@propertyWrapper
+//public struct View<T> {
+//    let key: String
+//
+//    public init(_ key: String) {
+//        self.key = key
+//    }
+//
+//    public var wrappedValue: T {
+//        get {
+//            return UserDefaults.standard.object(forKey: key) as? T ?? defaultValue
+//        }
+//        set {
+//            UserDefaults.standard.set(newValue, forKey: key)
+//        }
+//    }
+//}
