@@ -39,14 +39,14 @@ public extension VerticalLayout {
 	}
 
 	@discardableResult
-	func add(_ v: UIView, _ height: CGFloat) -> LayoutParam {
+	func add(_ v: UIView, _ height: CGFloat) -> LinearParam {
 		childViews.append(v)
 		v.lp.height(height)
 		return v.lp
 	}
 
 	@discardableResult
-	func add(_ v: UIView) -> LayoutParam {
+	func add(_ v: UIView) -> LinearParam {
 		childViews.append(v)
 		return v.lp
 	}

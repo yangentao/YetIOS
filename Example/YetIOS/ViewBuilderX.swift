@@ -7,11 +7,3 @@ import Foundation
 import UIKit
 
 
-extension UIView {
-
-    @discardableResult
-    func apply(_ block: (Self) -> Void) -> Self {
-        block(self)
-        return self
-    }
-}

@@ -5,19 +5,18 @@
 import Foundation
 
 
-
 public class AnyGroup {
-    private var items = [Any]()
+    private var _items = [Any]()
 
-    init(_ items: [Any]) {
-        self.items = items
+    public init(_ items: [Any]) {
+        self._items = items
     }
 
-    var flatItems: [Any] {
+    public var items: [Any] {
         var ls = [Any]()
-        for a in items {
+        for a in _items {
             if let g = a as? AnyGroup {
-                ls.append(contentsOf: g.flatItems)
+                ls.append(contentsOf: g.items)
             } else {
                 ls.append(a)
             }
@@ -26,6 +25,16 @@ public class AnyGroup {
     }
 
 
+}
+
+public extension AnyGroup {
+    func itemsTyped<T: Any>() -> [T] {
+        self.items.filter {
+            $0 is T
+        }.map {
+            $0 as! T
+        }
+    }
 }
 
 
@@ -49,15 +58,15 @@ public struct AnyBuilder {
     }
 }
 
+public typealias AnyBuildBlock = () -> AnyGroup
 
-public func buildAnyChildren(@AnyBuilder _ block: () -> AnyGroup) -> [Any] {
+public func buildItemsAny(@AnyBuilder _ block: AnyBuildBlock) -> [Any] {
     let c = block()
-    return c.flatItems
+    return c.items
 }
 
-public func buildTypedChildren<T: Any>(@AnyBuilder _ block: () -> AnyGroup) -> [T] {
+public func buildItemsTyped<T: Any>(@AnyBuilder _ block: AnyBuildBlock) -> [T] {
     let c = block()
-    return c.flatItems.map {
-        $0 as! T
-    }
+    return c.itemsTyped()
 }
+

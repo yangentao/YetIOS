@@ -28,7 +28,7 @@ class Person: CustomStringConvertible {
 extension Person {
 
     func buildChild(@AnyBuilder _ block: () -> AnyGroup) -> Person {
-        let ls: [Person] = buildTypedChildren(block)
+        let ls: [Person] = buildItemsTyped(block)
         for p in ls {
             self.children.append(p)
         }
@@ -46,7 +46,9 @@ extension Person {
 func testChildren() {
     var n = 0
     let p = Person("Song").buildChild {
-        Person("Entao")
+        let entao = Person("Entao")
+        entao
+        testVoid()
         if n == 0 {
             Person("Dou")
         }
@@ -57,6 +59,10 @@ func testChildren() {
         }
     }
     print(p)
+}
+
+func testVoid() {
+    println("TestVoid")
 }
 
 class ViewController: UIViewController {
@@ -77,14 +83,6 @@ class ViewController: UIViewController {
                 lb.text = "Hello"
             }
         }
-
-//        self.view.label { lb in
-//            lb.layout.centerParent().size(300, 200)
-//            lb.alignCenter()
-//            lb.backgroundColor = .cyan
-//            lb.text = "Hello"
-//
-//        }
     }
 
     override func didReceiveMemoryWarning() {
