@@ -6,54 +6,54 @@ import Foundation
 import UIKit
 
 
-let _parent_view_name_ = "_parent_view_name_"
+let ParentViewName = "_parent_view_name_"
 
 private var _constraint_list_key = "_conkey_"
 
-public class NSLayoutConstraintList {
+public class NSLayoutConstraintStore {
     var items = [NSLayoutConstraint]()
 }
 
 public extension UIView {
-    var layoutConstraintList: NSLayoutConstraintList {
-        if let ls = getAttr(_constraint_list_key) as? NSLayoutConstraintList {
+    internal var layoutConstraintItems: NSLayoutConstraintStore {
+        if let ls = getAttr(_constraint_list_key) as? NSLayoutConstraintStore {
             return ls
         }
-        let c = NSLayoutConstraintList()
+        let c = NSLayoutConstraintStore()
         setAttr(_constraint_list_key, c)
         return c
     }
 
     @discardableResult
     func updateConstraint(ident: String, constant: CGFloat) -> Self {
-        if let a = layoutConstraintList.items.first { $0.identifier == ident } {
+        if let a = layoutConstraintItems.items.first { $0.identifier == ident } {
             a.constant = constant
-            self.setNeedsUpdateConstraints()
-            self.superview?.setNeedsUpdateConstraints()
+            setNeedsUpdateConstraints()
+            superview?.setNeedsUpdateConstraints()
         }
         return self
     }
 
     func removeAllConstraints() {
-        for c in layoutConstraintList.items {
+        for c in layoutConstraintItems.items {
             c.isActive = false
         }
-        layoutConstraintList.items = []
+        layoutConstraintItems.items = []
     }
 
     func removeConstraint(ident: String) {
-        let c = layoutConstraintList.items.removeFirstIf { n in
+        let c = layoutConstraintItems.items.removeFirstIf { n in
             n.identifier == ident
         }
         c?.isActive = false
     }
 
     func layoutStretch(_ axis: NSLayoutConstraint.Axis) {
-        self.setContentHuggingPriority(UILayoutPriority(rawValue: 240), for: axis)
+        setContentHuggingPriority(UILayoutPriority(rawValue: 240), for: axis)
     }
 
     func layoutKeepContent(_ axis: NSLayoutConstraint.Axis) {
-        self.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 760), for: axis)
+        setContentCompressionResistancePriority(UILayoutPriority(rawValue: 760), for: axis)
     }
 
 }
@@ -98,6 +98,11 @@ public class ConstraintItem {
 
 public class ConstraintItemRelation {
     let item = ConstraintItem()
+
+    init(_ attr: NSLayoutConstraint.Attribute) {
+        item.attr = attr
+        item.attr2 = attr
+    }
 }
 
 public extension ConstraintItemRelation {
@@ -123,11 +128,11 @@ public extension ConstraintItemRelation {
 
 
     var eqParent: ConstraintItem {
-        eq(_parent_view_name_)
+        eq(ParentViewName)
     }
 
     func eqParent(_ attr2: NSLayoutConstraint.Attribute) -> ConstraintItem {
-        eq(_parent_view_name_, attr2)
+        eq(ParentViewName, attr2)
     }
 
     //--
@@ -152,11 +157,11 @@ public extension ConstraintItemRelation {
 
 
     var leParent: ConstraintItem {
-        le(_parent_view_name_)
+        le(ParentViewName)
     }
 
     func leParent(_ attr2: NSLayoutConstraint.Attribute) -> ConstraintItem {
-        le(_parent_view_name_, attr2)
+        le(ParentViewName, attr2)
     }
 
     //--
@@ -182,141 +187,81 @@ public extension ConstraintItemRelation {
 
 
     var geParent: ConstraintItem {
-        ge(_parent_view_name_)
+        ge(ParentViewName)
     }
 
     func geParent(_ attr2: NSLayoutConstraint.Attribute) -> ConstraintItem {
-        ge(_parent_view_name_, attr2)
+        ge(ParentViewName, attr2)
     }
 }
 
 public var ViewLeft: ConstraintItemRelation {
-    let a = ConstraintItemRelation()
-    a.item.attr = .left
-    a.item.attr2 = .left
-    return a
+    ConstraintItemRelation(.left)
 }
 
 public var ViewRight: ConstraintItemRelation {
-    let a = ConstraintItemRelation()
-    a.item.attr = .right
-    a.item.attr2 = .right
-    return a
+    ConstraintItemRelation(.right)
 }
 
 public var ViewTop: ConstraintItemRelation {
-    let a = ConstraintItemRelation()
-    a.item.attr = .top
-    a.item.attr2 = .top
-    return a
+    ConstraintItemRelation(.top)
 }
 public var ViewBottom: ConstraintItemRelation {
-    let a = ConstraintItemRelation()
-    a.item.attr = .bottom
-    a.item.attr2 = .bottom
-    return a
+    ConstraintItemRelation(.bottom)
 }
 public var ViewLeading: ConstraintItemRelation {
-    let a = ConstraintItemRelation()
-    a.item.attr = .leading
-    a.item.attr2 = .leading
-    return a
+    ConstraintItemRelation(.leading)
 }
 public var ViewTrailing: ConstraintItemRelation {
-    let a = ConstraintItemRelation()
-    a.item.attr = .trailing
-    a.item.attr2 = .trailing
-    return a
+    ConstraintItemRelation(.trailing)
 }
 public var ViewWidth: ConstraintItemRelation {
-    let a = ConstraintItemRelation()
-    a.item.attr = .width
-    a.item.attr2 = .width
-    return a
+    ConstraintItemRelation(.width)
 }
 public var ViewHeight: ConstraintItemRelation {
-    let a = ConstraintItemRelation()
-    a.item.attr = .height
-    a.item.attr2 = .height
-    return a
+    ConstraintItemRelation(.height)
 }
 
 public var ViewCenterX: ConstraintItemRelation {
-    let a = ConstraintItemRelation()
-    a.item.attr = .centerX
-    a.item.attr2 = .centerX
-    return a
+    ConstraintItemRelation(.centerX)
 }
 public var ViewCenterY: ConstraintItemRelation {
-    let a = ConstraintItemRelation()
-    a.item.attr = .centerY
-    a.item.attr2 = .centerY
-    return a
+    ConstraintItemRelation(.centerY)
 }
 public var ViewLastBaseline: ConstraintItemRelation {
-    let a = ConstraintItemRelation()
-    a.item.attr = .lastBaseline
-    a.item.attr2 = .lastBaseline
-    return a
+    ConstraintItemRelation(.lastBaseline)
 }
 public var ViewFirstBaseline: ConstraintItemRelation {
-    let a = ConstraintItemRelation()
-    a.item.attr = .firstBaseline
-    a.item.attr2 = .firstBaseline
-    return a
+    ConstraintItemRelation(.firstBaseline)
 }
 
 public var ViewLeftMargin: ConstraintItemRelation {
-    let a = ConstraintItemRelation()
-    a.item.attr = .leftMargin
-    a.item.attr2 = .leftMargin
-    return a
+    ConstraintItemRelation(.leftMargin)
 }
 
 public var ViewRightMargin: ConstraintItemRelation {
-    let a = ConstraintItemRelation()
-    a.item.attr = .rightMargin
-    a.item.attr2 = .rightMargin
-    return a
+    ConstraintItemRelation(.rightMargin)
 }
 public var ViewTopMargin: ConstraintItemRelation {
-    let a = ConstraintItemRelation()
-    a.item.attr = .topMargin
-    a.item.attr2 = .topMargin
-    return a
+    ConstraintItemRelation(.topMargin)
 }
 
 public var ViewBottomMargin: ConstraintItemRelation {
-    let a = ConstraintItemRelation()
-    a.item.attr = .bottomMargin
-    a.item.attr2 = .bottomMargin
-    return a
+    ConstraintItemRelation(.bottomMargin)
 }
 
 public var ViewLeadingMargin: ConstraintItemRelation {
-    let a = ConstraintItemRelation()
-    a.item.attr = .leadingMargin
-    a.item.attr2 = .leadingMargin
-    return a
+    ConstraintItemRelation(.leadingMargin)
 }
 public var ViewTrailingMargin: ConstraintItemRelation {
-    let a = ConstraintItemRelation()
-    a.item.attr = .trailingMargin
-    a.item.attr2 = .trailingMargin
-    return a
+    ConstraintItemRelation(.trailingMargin)
 }
 public var ViewCenterXWithinMargins: ConstraintItemRelation {
-    let a = ConstraintItemRelation()
-    a.item.attr = .centerXWithinMargins
-    a.item.attr2 = .centerXWithinMargins
-    return a
+    ConstraintItemRelation(.centerXWithinMargins)
 }
 
 public var ViewCenterYWithinMargins: ConstraintItemRelation {
-    let a = ConstraintItemRelation()
-    a.item.attr = .centerYWithinMargins
-    a.item.attr2 = .centerYWithinMargins
-    return a
+    ConstraintItemRelation(.centerYWithinMargins)
 }
 
 

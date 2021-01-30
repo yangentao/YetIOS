@@ -187,7 +187,7 @@ public class YetLayoutAttrBase {
     }
 
     private func findOld() -> NSLayoutConstraint? {
-        let ls = self.view.layoutConstraintList.items.filter { (n: NSLayoutConstraint) in
+        let ls = self.view.layoutConstraintItems.items.filter { (n: NSLayoutConstraint) in
             n.isActive && n.firstItem === view && n.firstAttribute == attr && n.relation == rel
         }
         if !ls.isEmpty {
@@ -206,7 +206,7 @@ public class YetLayoutAttrBase {
     }
 
     public func remove() {
-        let c = self.view.layoutConstraintList.items.removeFirstIf { (n: NSLayoutConstraint) in
+        let c = self.view.layoutConstraintItems.items.removeFirstIf { (n: NSLayoutConstraint) in
             n.firstItem === view && n.firstAttribute == attr && n.relation == rel
         }
         c?.isActive = false
@@ -220,7 +220,7 @@ public class YetLayoutAttrBase {
             n.identifier = name
         }
         n.isActive = true
-        self.view.layoutConstraintList.items.append(n)
+        self.view.layoutConstraintItems.items.append(n)
         return n
     }
 }

@@ -75,14 +75,25 @@ class ViewController: UIViewController {
 //        let lb = UILabel(frame: .zero)
 //        self.view.addSubview(lb)
 
-        self.view.apply { v in
-            v.label { lb in
+        self.view.layoutConstraint {
+            UILabel(frame: .zero).constraints {
+                $0.centerParent().size(200, 100)
+            }.apply { lb in
                 lb.layout.centerParent().size(300, 200)
                 lb.alignCenter()
                 lb.backgroundColor = .cyan
                 lb.text = "Hello"
             }
         }
+
+//        self.view.apply { v in
+//            v.label { lb in
+//                lb.layout.centerParent().size(300, 200)
+//                lb.alignCenter()
+//                lb.backgroundColor = .cyan
+//                lb.text = "Hello"
+//            }
+//        }
     }
 
     override func didReceiveMemoryWarning() {
