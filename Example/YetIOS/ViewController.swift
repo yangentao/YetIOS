@@ -76,13 +76,22 @@ class ViewController: UIViewController {
 //        self.view.addSubview(lb)
 
         self.view.layoutConstraint {
-            UILabel(frame: .zero).constraints {
-                $0.centerParent().size(200, 100)
-            }.apply { lb in
-                lb.layout.centerParent().size(300, 200)
+            UILabel(frame: .zero).apply { lb in
+                lb.constraints {
+                    $0.centerParent().size(200, 100)
+                }
+                lb.nameID("hello")
                 lb.alignCenter()
                 lb.backgroundColor = .cyan
                 lb.text = "Hello"
+            }
+            UILabel(frame: .zero).apply { lb in
+                lb.constraints {
+                    $0.size(200, 100).below("hello").centerXParent()
+                }
+                lb.alignCenter()
+                lb.backgroundColor = .green
+                lb.text = "Entao"
             }
         }
 
