@@ -213,7 +213,7 @@ public class Dialog: UIViewController {
 				}
 				btnPanel.addSubview(b)
 				let L = b.layout.fillY()
-				L.width.eqParent.divided(buttons.count.f).offset(-1).active()
+				L.width.eqParent.divided(buttons.count.f).constant(-1).active()
 				if preV == nil {
 					L.leftParent()
 				} else {
@@ -226,7 +226,7 @@ public class Dialog: UIViewController {
 
 //		roundView.layouts.width(dialogWidth).height(ql.totalHeight).centerParent().install()
 		let L = roundView.layout.height(ql.totalHeight)
-		L.width.eqParent.width.offset(-marginX * 2).active()
+		L.width.eqParent.constant(-marginX * 2).active()
 //		L.width.le(maxWidth).active()
 		L.centerXParent()
 		switch self.gravityY {

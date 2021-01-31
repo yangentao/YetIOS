@@ -59,7 +59,7 @@ public extension UIView {
 }
 
 public class ConstraintItem {
-    unowned var item: UIView! // view
+    unowned var itemView: UIView! // view
     var attr: NSLayoutConstraint.Attribute!
     var relation: NSLayoutConstraint.Relation!
     unowned var toItemView: UIView? = nil
@@ -69,6 +69,10 @@ public class ConstraintItem {
     var constant: CGFloat = 0
     var ident: String? = nil
     var priority: UILayoutPriority = .required
+
+    init() {
+
+    }
 
     init(_ attr: NSLayoutConstraint.Attribute) {
         self.attr = attr

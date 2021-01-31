@@ -39,7 +39,7 @@ public extension UIView {
     func constraintsBuild(@AnyBuilder _ block: AnyBuildBlock) -> Self {
         let ls: [ConstraintItem] = block().itemsTyped()
         for c in ls {
-            c.item = self
+            c.itemView = self
         }
         tempConstraintItemsStore.items.append(contentsOf: ls)
         return self
@@ -67,8 +67,8 @@ public extension UIView {
         tempConstraintItemsStore.items = []
         translatesAutoresizingMaskIntoConstraints = false
         for c in cList {
-            if c.item == nil {
-                c.item = self
+            if c.itemView == nil {
+                c.itemView = self
             }
             var toItemView: UIView? = nil
             if c.toItemView != nil {
@@ -83,7 +83,7 @@ public extension UIView {
                 }
             }
 
-            let cp = NSLayoutConstraint(item: c.item as Any, attribute: c.attr, relatedBy: c.relation, toItem: toItemView, attribute: c.attr2, multiplier: c.multiplier, constant: c.constant)
+            let cp = NSLayoutConstraint(item: c.itemView as Any, attribute: c.attr, relatedBy: c.relation, toItem: toItemView, attribute: c.attr2, multiplier: c.multiplier, constant: c.constant)
             cp.priority = c.priority
             cp.identifier = c.ident
             layoutConstraintItems.items.append(cp)

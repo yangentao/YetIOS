@@ -18,7 +18,7 @@ public class ConstraintsBuilder {
 public extension ConstraintsBuilder {
 
     func append(_ item: ConstraintItem) -> ConstraintsBuilder {
-        item.item = view
+        item.itemView = view
         items.append(item)
         return self
     }

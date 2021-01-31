@@ -84,7 +84,7 @@ public class GridLayout {
 			} else {
 				let X = self.edge.left + self.edge.right + self.cellWidth * self.columns
 				let Y: CGFloat = col.f / (self.columns - 1).f
-				L.left.eqParent.right.multi(Y).offset(self.edge.left + self.cellWidth * col - X * Y).active()
+				L.left.eqParent(.right).multi(Y).constant(self.edge.left + self.cellWidth * col - X * Y).active()
 			}
 
 		}

@@ -48,7 +48,7 @@ public class ImageText4Cell: UITableViewCell {
 		}
 		timeView.layout { L in
 			L.rightParent(-10)
-			L.top.eq(textView).top.active()
+			L.top.eq(textView).active()
 			L.height(Theme.Text.heightMinor)
 		}
 
@@ -63,7 +63,7 @@ public class ImageText4Cell: UITableViewCell {
 		}
 		statusView.layout { L in
 			L.rightParent(-10)
-			L.top.eq(msgView).top.active()
+			L.top.eq(msgView).active()
 			L.height(Theme.Text.heightMinor)
 		}
 

@@ -96,7 +96,7 @@ public extension VerticalLayout {
 				}
 				// myheight = parent.height * myWeight / weightSum - fixY * myWeight / weightSum
 				let percent = p.weight / weightSum
-				L.height.eqParent.height.multi(percent).offset(-fixY * percent).active()
+				L.height.eqParent.multi(percent).constant(-fixY * percent).active()
 			} else {
 				L.height(self.defaultHeight)
 				loge("高度没有被正确设置, height >0 或者 height==0 && weight>0, 在ScrollView中不能设置weight且height>0")
