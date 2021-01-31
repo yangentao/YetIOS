@@ -83,7 +83,7 @@ public class Toast {
 				UIView.animate(withDuration: 0.2, animations: {
 					self.lb.alpha = 0
 				}, completion: { b in
-					self.lb.layout.removeAll()
+					self.lb.removeAllConstraints()
 					self.lb.removeFromSuperview()
 				})
 			}

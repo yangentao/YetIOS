@@ -70,6 +70,11 @@ public class ConstraintItem {
     var ident: String? = nil
     var priority: UILayoutPriority = .required
 
+    init(_ attr: NSLayoutConstraint.Attribute) {
+        self.attr = attr
+        self.attr2 = attr
+    }
+
     public func ident(_ id: String) -> ConstraintItem {
         ident = id
         return self
@@ -97,11 +102,10 @@ public class ConstraintItem {
 }
 
 public class ConstraintItemRelation {
-    let item = ConstraintItem()
+    let item: ConstraintItem
 
     init(_ attr: NSLayoutConstraint.Attribute) {
-        item.attr = attr
-        item.attr2 = attr
+        item = ConstraintItem(attr)
     }
 }
 
