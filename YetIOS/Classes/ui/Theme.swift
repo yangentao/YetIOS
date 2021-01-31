@@ -7,6 +7,74 @@ import Foundation
 import UIKit
 
 
+@available(iOS 13.0, *)
+public func makeColor(_ normalColor: UIColor, darkColor: UIColor) -> UIColor {
+    return UIColor { (trait) -> UIColor in
+        if trait.userInterfaceStyle == .dark {
+            return darkColor
+        } else {
+            return normalColor
+        }
+    }
+}
+
+public class Colors {
+    public static var seprator: UIColor = {
+        if #available(iOS 13.0, *) {
+            return UIColor.separator
+        }
+        return Color.whiteF(0.85)
+    }()
+    public static var background: UIColor = {
+        if #available(iOS 13.0, *) {
+            return UIColor.systemBackground
+        }
+        return Color.white
+    }()
+    public static var backgroundSecondary: UIColor = {
+        if #available(iOS 13.0, *) {
+            return UIColor.secondarySystemBackground
+        }
+        return Color.whiteF(0.9)
+    }()
+    public static var backgroundTertiary: UIColor = {
+        if #available(iOS 13.0, *) {
+            return UIColor.tertiarySystemBackground
+        }
+        return Color.whiteF(0.8)
+    }()
+
+
+    public static var label: UIColor = {
+        if #available(iOS 13.0, *) {
+            return UIColor.label
+        }
+        return Color.whiteF(0.2)
+    }()
+
+    public static var labelSecondary: UIColor = {
+        if #available(iOS 13.0, *) {
+            return UIColor.secondaryLabel
+        }
+        return Color.whiteF(0.3)
+    }()
+
+    public static var labelTertiary: UIColor = {
+        if #available(iOS 13.0, *) {
+            return UIColor.tertiaryLabel
+        }
+        return Color.whiteF(0.4)
+    }()
+
+    public static var labelQuaternary: UIColor = {
+        if #available(iOS 13.0, *) {
+            return UIColor.quaternaryLabel
+        }
+        return Color.whiteF(0.5)
+    }()
+
+}
+
 public class ControlSize {
     public static var buttonHeight: CGFloat = 42
     public static var editHeight: CGFloat = 42
@@ -35,17 +103,39 @@ public class Theme {
     public static var dangerColor: UIColor = 0xd81e06.rgb
     public static var safeColor: UIColor = 0x36ab60.rgb
     public static var grayBackColor: UIColor = Color.whiteF(0.85)
-    public static var sepratorColor: UIColor = Color.whiteF(0.85)
+
+    public static var sepratorColor: UIColor = {
+        if #available(iOS 13.0, *) {
+            return UIColor.separator
+        }
+        return Color.whiteF(0.85)
+    }()
+    public static var background: UIColor = {
+        if #available(iOS 13.0, *) {
+            return UIColor.systemBackground
+        }
+        return Color.white
+    }()
+
 
     public class Text {
-        public static var primaryColor: UIColor = 0x4A4A4A.rgb
+//        public static var primaryColor: UIColor = 0x4A4A4A.rgb  //UIColor.darkText //
+        public static var primaryColor: UIColor = {
+            if #available(iOS 13.0, *) {
+                return UIColor.label
+            }
+            return 0x4A4A4A.rgb
+        }()
+
         public static var minorColor: UIColor = Color.whiteF(0.50)
         public static var disabledColor: UIColor = Color.rgb(135, 154, 168)
+
         public static var primaryFont: UIFont = Font.sys(16)
         public static var minorFont: UIFont = Font.sys(14)
         public static var height: CGFloat = 25
         public static var height2: CGFloat = 30
         public static var heightMinor: CGFloat = 20
+
 
     }
 

@@ -7,35 +7,51 @@
 //
 
 import UIKit
-
 import YetIOS
 
 
 class ViewController: UIViewController {
-    lazy var label: UILabel = NamedView(self, "hello")
+    lazy var label: UILabel = NamedView(self, "a")
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
 
         self.view.layoutConstraint {
-            UILabel(frame: .zero).apply { lb in
+
+            MLabel.apply { lb in
                 lb.constraints {
                     $0.centerParent().size(200, 100)
                 }
-                lb.named("hello")
+                lb.named("a")
                 lb.alignCenter()
-                lb.backgroundColor = .cyan
-                lb.text = "Hello"
+                lb.backgroundColor = Colors.backgroundSecondary
+                lb.textColor = Colors.labelSecondary
+                lb.text = "AAAAAAA"
+                lb.font = Font.sys( UIFont.labelFontSize)
 
             }
-            UILabel(frame: .zero).apply { lb in
+            MLabel.apply { lb in
                 lb.constraints {
-                    $0.size(200, 100).below("hello").centerXParent()
+                    $0.size(200, 100).above("a").centerXParent()
                 }
+                lb.named("b")
                 lb.alignCenter()
-                lb.backgroundColor = .green
-                lb.text = "Entao"
+                lb.backgroundColor = Colors.background
+                lb.textColor = Colors.label
+                lb.text = "BBBBBBB"
+                lb.font = Font.sys( UIFont.labelFontSize + 2)
+            }
+            MLabel.apply { lb in
+                lb.constraints {
+                    $0.size(200, 100).below("a").centerXParent()
+                }
+                lb.named("c")
+                lb.alignCenter()
+                lb.backgroundColor = Colors.backgroundTertiary
+                lb.textColor = Colors.labelTertiary
+                lb.text = "CCCCCC"
+                lb.font = Font.sys( UIFont.labelFontSize - 2 )
             }
         }
 

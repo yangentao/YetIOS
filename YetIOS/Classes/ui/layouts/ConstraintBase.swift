@@ -26,7 +26,7 @@ public extension UIView {
 
     @discardableResult
     func updateConstraint(ident: String, constant: CGFloat) -> Self {
-        if let a = layoutConstraintItems.items.first { $0.identifier == ident } {
+        if let a = layoutConstraintItems.items.first ({ $0.identifier == ident } ) {
             a.constant = constant
             setNeedsUpdateConstraints()
             superview?.setNeedsUpdateConstraints()

@@ -8,59 +8,63 @@ import UIKit
 
 public extension UILabel {
 
-	static var makePrimary: UILabel {
-		return UILabel.Primary
-	}
-	static var makeMinor: UILabel {
-		return UILabel.Minor
-	}
+    static var makePrimary: UILabel {
+        return UILabel.Primary
+    }
+    static var makeMinor: UILabel {
+        return UILabel.Minor
+    }
 
-	static var Primary: UILabel {
-		let a = UILabel(frame: Rect.zero)
-		a.stylePrimary()
-		return a
-	}
-	static var Minor: UILabel {
-		let a = UILabel(frame: Rect.zero)
-		a.styleMinor()
-		return a
-	}
+    static var Primary: UILabel {
+        let a = UILabel(frame: Rect.zero)
+        a.stylePrimary()
+        return a
+    }
+    static var Minor: UILabel {
+        let a = UILabel(frame: Rect.zero)
+        a.styleMinor()
+        return a
+    }
 
-	var heightThatFit: CGFloat {
-		let sz = self.sizeThatFits(Size.zero)
-		return sz.height
-	}
-	var widthThatFit: CGFloat {
-		let sz = self.sizeThatFits(Size.zero)
-		return sz.width
-	}
+    var heightThatFit: CGFloat {
+        let sz = self.sizeThatFits(Size.zero)
+        return sz.height
+    }
+    var widthThatFit: CGFloat {
+        let sz = self.sizeThatFits(Size.zero)
+        return sz.width
+    }
 
-	@discardableResult
-	func alignRight() -> UILabel {
-		self.textAlignment = .right
-		return self
-	}
+    @discardableResult
+    func alignRight() -> UILabel {
+        self.textAlignment = .right
+        return self
+    }
 
-	@discardableResult
-	func alignCenter() -> UILabel {
-		self.textAlignment = .center
-		return self
-	}
+    @discardableResult
+    func alignCenter() -> UILabel {
+        self.textAlignment = .center
+        return self
+    }
 
-	@discardableResult
-	func alignLeft() -> UILabel {
-		self.textAlignment = .left
-		return self
-	}
+    @discardableResult
+    func alignLeft() -> UILabel {
+        self.textAlignment = .left
+        return self
+    }
 
-	func styleMinor() {
-		self.textColor = Theme.Text.minorColor
-		self.font = Theme.Text.minorFont
-	}
+    @discardableResult
+    func styleMinor() -> UILabel {
+        self.textColor = Theme.Text.minorColor
+        self.font = Theme.Text.minorFont
+        return self
+    }
 
-	func stylePrimary() {
-		self.backgroundColor = .white
-		self.textColor = Theme.Text.primaryColor
-		self.font = Theme.Text.primaryFont
-	}
+    @discardableResult
+    func stylePrimary() -> UILabel {
+        self.backgroundColor = .white
+        self.textColor = Theme.Text.primaryColor
+        self.font = Theme.Text.primaryFont
+        return self
+    }
 }

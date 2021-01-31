@@ -104,7 +104,10 @@ public extension UIView {
     func layoutConstraint(@AnyBuilder _ block: AnyBuildBlock) {
         let b = block()
         let viewList: [UIView] = b.itemsTyped()
-        for childView in viewList {
+        let ls = viewList.filter {
+            $0 !== self
+        }
+        for childView in ls {
             addSubview(childView)
         }
         installChildrenConstaints(viewList)
