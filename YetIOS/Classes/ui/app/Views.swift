@@ -14,7 +14,6 @@ public func NamedView<T: UIView>(_ page: UIViewController, _ key: String) -> T {
 }
 
 public extension UIView {
-
     var name: String? {
         get {
             self.getAttr("__view_name__") as? String
@@ -25,7 +24,7 @@ public extension UIView {
     }
 
     @discardableResult
-    func nameID(_ name: String) -> Self {
+    func named(_ name: String) -> Self {
         self.name = name
         return self
     }
@@ -41,6 +40,12 @@ public extension UIView {
         }
         return nil
     }
+
+
+}
+
+public extension UIView {
+
 
     static var SepratorLine: UIView {
         let v = UIView(frame: Rect.zero)

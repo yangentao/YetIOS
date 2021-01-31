@@ -24,11 +24,11 @@ public extension UIImageView {
 		self.image = UIImage(named: name)?.tinted(Theme.themeColor)
 	}
 
-	func named(_ name: String) {
+	func namedImage(_ name: String) {
 		self.image = UIImage(named: name)
 	}
 
-	func named(_ name: String, _ w: CGFloat) {
+	func namedImage(_ name: String, _ w: CGFloat) {
 		self.image = UIImage(named: name)?.scaledTo(w)
 	}
 

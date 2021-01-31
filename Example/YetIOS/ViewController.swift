@@ -23,10 +23,11 @@ class ViewController: UIViewController {
                 lb.constraints {
                     $0.centerParent().size(200, 100)
                 }
-                lb.nameID("hello")
+                lb.named("hello")
                 lb.alignCenter()
                 lb.backgroundColor = .cyan
                 lb.text = "Hello"
+
             }
             UILabel(frame: .zero).apply { lb in
                 lb.constraints {

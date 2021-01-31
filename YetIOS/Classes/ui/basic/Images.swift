@@ -11,10 +11,10 @@ public typealias Image = UIImage
 public extension UIImage {
 
 	static func tabBarNamed(_ name: String) -> UIImage {
-		return UIImage.named(name).scaledTo(Theme.TabBar.imageSize)//.renderRaw
+		return UIImage.namedImage(name).scaledTo(Theme.TabBar.imageSize)//.renderRaw
 	}
 
-	static func named(_ name: String) -> UIImage {
+	static func namedImage(_ name: String) -> UIImage {
 		let img = UIImage(named: name)
 		if img == nil {
 			logd("Image NOT found ", name)

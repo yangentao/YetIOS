@@ -235,7 +235,7 @@ public extension ItemPage {
 		let u = UserView()
 		u.textView.text = ""
 		u.statusView.text = ""
-		u.iconView.named(R.portrait)
+		u.iconView.namedImage(R.portrait)
 		u.tagS = "user"
 		addItem(u)
 		return u
@@ -327,7 +327,7 @@ public extension ItemPage {
 		let a = TextImageView()
 		a.textView.text = text
 		if !image.isEmpty {
-			a.imageView.named(image)
+			a.imageView.namedImage(image)
 		}
 		a.tagS = text.trim("*")
 		addItem(a)

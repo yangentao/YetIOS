@@ -106,7 +106,7 @@ open class SheetPage: BasePage {
 		if self.tintThemeColor {
 			a.iconView.nameThemed(image)
 		} else {
-			a.iconView.named(image)
+			a.iconView.namedImage(image)
 		}
 		return a
 	}
