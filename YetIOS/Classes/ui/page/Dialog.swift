@@ -185,7 +185,7 @@ public class Dialog: UIViewController {
 		if !buttons.isEmpty {
 			if bodyView != nil {
 				let v = UIView(frame: Rect.zero)
-				v.backgroundColor = Theme.sepratorColor
+				v.backgroundColor = Colors.seprator
 				ql.add(v, 1)
 			}
 			let btnPanel = UIView(frame: Rect.zero)
@@ -195,7 +195,7 @@ public class Dialog: UIViewController {
 			for n in buttons.indices {
 				if n != 0 {
 					let v = UIView(frame: Rect.zero)
-					v.backgroundColor = Theme.sepratorColor
+					v.backgroundColor = Colors.seprator
 					btnPanel.addSubview(v)
 					v.layout.width(1).toRightOf(preV!).fillY()
 					preV = v

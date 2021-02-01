@@ -49,7 +49,7 @@ public extension UIView {
 
     static var SepratorLine: UIView {
         let v = UIView(frame: Rect.zero)
-        v.backgroundColor = Theme.sepratorColor
+        v.backgroundColor = Colors.seprator
         return v
     }
 
@@ -68,7 +68,7 @@ public extension UIView {
 
     func addSepratorLine(_ leftOffset: CGFloat = 0, _ rightOffset: CGFloat = 0) -> UIView {
         let line = UIView(frame: Rect.zero)
-        line.backgroundColor = Theme.sepratorColor
+        line.backgroundColor = Colors.seprator
         self.addSubview(line)
         line.layout.height(1).fillX(leftOffset, rightOffset)
         return line
@@ -76,7 +76,7 @@ public extension UIView {
 
     func addLineBottom() {
         let line = UIView(frame: Rect.zero)
-        line.backgroundColor = Theme.sepratorColor
+        line.backgroundColor = Colors.seprator
         self.addSubview(line)
         line.layout.height(1).fillX().bottomParent(0)
     }

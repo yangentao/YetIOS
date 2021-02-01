@@ -72,7 +72,39 @@ public class Colors {
         }
         return Color.whiteF(0.5)
     }()
+    public static var link: UIColor = {
+        if #available(iOS 13.0, *) {
+            return UIColor.link
+        }
+        return Color.systemBlue
+    }()
+    public static var placeholder: UIColor = {
+        if #available(iOS 13.0, *) {
+            return UIColor.placeholderText
+        }
+        return Color.whiteF(0.7)
+    }()
 
+    public static var fill: UIColor = {
+        if #available(iOS 13.0, *) {
+            return UIColor.systemFill
+        }
+        return Color.white
+    }()
+
+    public static var fillSecondary: UIColor = {
+        if #available(iOS 13.0, *) {
+            return UIColor.secondarySystemFill
+        }
+        return Color.white
+    }()
+
+    public static var fillTertiary: UIColor = {
+        if #available(iOS 13.0, *) {
+            return UIColor.tertiarySystemFill
+        }
+        return Color.white
+    }()
 }
 
 public class ControlSize {
@@ -98,39 +130,28 @@ public class Dim {
 
 public class Theme {
     public static var imagePostfix = "-light"
-    public static var themeColor: UIColor = 0x4FB29D.rgb
-    public static var fadeColor: UIColor = 0xff8800.rgb
+    public static var fadeColor: UIColor = UIColor.whiteF(0.8)
     public static var dangerColor: UIColor = 0xd81e06.rgb
     public static var safeColor: UIColor = 0x36ab60.rgb
     public static var grayBackColor: UIColor = Color.whiteF(0.85)
 
-    public static var sepratorColor: UIColor = {
+
+    public static var themeColor: UIColor = {
         if #available(iOS 13.0, *) {
-            return UIColor.separator
+            return Colors.background
         }
-        return Color.whiteF(0.85)
-    }()
-    public static var background: UIColor = {
-        if #available(iOS 13.0, *) {
-            return UIColor.systemBackground
-        }
-        return Color.white
+        return 0x4FB29D.rgb
     }()
 
 
     public class Text {
 //        public static var primaryColor: UIColor = 0x4A4A4A.rgb  //UIColor.darkText //
-        public static var primaryColor: UIColor = {
-            if #available(iOS 13.0, *) {
-                return UIColor.label
-            }
-            return 0x4A4A4A.rgb
-        }()
+        public static var primaryColor: UIColor = Colors.label
 
-        public static var minorColor: UIColor = Color.whiteF(0.50)
+        public static var minorColor: UIColor = Colors.labelSecondary
         public static var disabledColor: UIColor = Color.rgb(135, 154, 168)
 
-        public static var primaryFont: UIFont = Font.sys(16)
+        public static var primaryFont: UIFont = Font.sys(16)  // Font.sys(UIFont.labelFontSize) //
         public static var minorFont: UIFont = Font.sys(14)
         public static var height: CGFloat = 25
         public static var height2: CGFloat = 30
@@ -150,7 +171,7 @@ public class Theme {
     }
 
     public class Button {
-        public static var textColor: UIColor = Theme.Text.primaryColor
+        public static var textColor: UIColor = Colors.label
         public static var textColorFade: UIColor = Theme.fadeColor
         public static var backColor: UIColor = UIColor.white
         public static var borderColor: UIColor = Color.whiteF(0.5)
@@ -162,14 +183,19 @@ public class Theme {
     }
 
     public class TabBar {
-        public static var lightColor: UIColor? = Theme.themeColor
+        public static var lightColor: UIColor? = {
+            if #available(iOS 13.0, *) {
+                return Colors.fill
+            }
+            return Color.whiteF(0.9)
+        }()
         public static var grayColor: UIColor? = 0x707070.rgb
         public static var backgroundColor: UIColor? = 0xf8f8f8.rgb
         public static var imageSize: CGFloat = 30
     }
 
     public class TitleBar {
-        public static var textColor: UIColor = UIColor.white
+        public static var textColor: UIColor = Colors.label
         public static var backgroundColor: UIColor = Theme.themeColor
 
         public static var imageSize: CGFloat = 30

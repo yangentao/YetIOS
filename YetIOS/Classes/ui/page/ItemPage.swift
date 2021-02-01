@@ -182,7 +182,7 @@ open class ItemPage: TitlePage, UITableViewDataSource, UITableViewDelegate {
 		if item.ivBottomLine {
 			let lineView = UIView(frame: Rect.zero)
 			lineView.tagS = "lineview"
-			lineView.backgroundColor = Theme.sepratorColor
+			lineView.backgroundColor = Colors.seprator
 			cell.addSubview(lineView)
 			lineView.layout.height(1).fillX(item.ivBottomLineOffsetLeft, -item.ivBottomLineOffsetRight).bottomParent(0)
 		} else {

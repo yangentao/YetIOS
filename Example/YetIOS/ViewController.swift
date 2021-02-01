@@ -22,21 +22,21 @@ class ViewController: UIViewController {
                 MLabel.apply { lb in
                     lb.named("a")
                     lb.alignCenter()
-                    lb.backgroundColor = Colors.background
+                    lb.backgroundColor = Colors.fill
                     lb.textColor = Colors.label
                     lb.font = Font.sys(UIFont.labelFontSize)
                     lb.text = "AAAAAAA"
                 }
                 MLabel.apply { lb in
                     lb.alignCenter()
-                    lb.backgroundColor = Colors.backgroundSecondary
+                    lb.backgroundColor = Colors.fillSecondary
                     lb.textColor = Colors.labelSecondary
                     lb.font = Font.sys(UIFont.labelFontSize)
                     lb.text = "BBBB"
                 }
                 MLabel.apply { lb in
                     lb.alignCenter()
-                    lb.backgroundColor = Colors.backgroundTertiary
+                    lb.backgroundColor = Colors.fillTertiary
                     lb.textColor = Colors.labelTertiary
                     lb.font = Font.sys(UIFont.labelFontSize)
                     lb.text = "CCC"
@@ -45,6 +45,7 @@ class ViewController: UIViewController {
                 $0.centerParent().widthParent(-40).heightParent(-40)
             }
         }
+        self.view.backgroundColor = Colors.background
         log("LabelText: ", label.text)
     }
 
