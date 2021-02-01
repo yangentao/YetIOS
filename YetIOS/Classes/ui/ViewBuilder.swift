@@ -6,6 +6,59 @@ import Foundation
 import UIKit
 
 
+public var MStackView: UIStackView {
+    UIStackView(frame: .zero)
+}
+public var HStackView: UIStackView {
+    MStackView.axis(.horizontal)
+}
+public var VStackView: UIStackView {
+    MStackView.axis(.vertical)
+}
+
+public func HStack(dist: UIStackView.Distribution, align: UIStackView.Alignment) -> UIStackView {
+    MStackView.axis(.horizontal).distribution(dist).align(align)
+}
+
+public func VStack(dist: UIStackView.Distribution, align: UIStackView.Alignment) -> UIStackView {
+    MStackView.axis(.vertical).distribution(dist).align(align)
+}
+
+public extension UIStackView {
+    func axis(_ ax: NSLayoutConstraint.Axis) -> Self {
+        self.axis = ax
+        return self
+    }
+
+    func distribution(_ d: UIStackView.Distribution) -> Self {
+        self.distribution = d
+        return self
+    }
+
+    func align(_ a: UIStackView.Alignment) -> Self {
+        self.alignment = a
+        return self
+    }
+
+    func space(_ n: CGFloat) -> Self {
+        self.spacing = n
+        return self
+    }
+
+    func arrange(@AnyBuilder _ block: AnyBuildBlock) -> Self {
+        let b = block()
+        let viewList: [UIView] = b.itemsTyped()
+        let ls = viewList.filter {
+            $0 !== self
+        }
+        for childView in ls {
+            addArrangedSubview(childView)
+        }
+        return self
+    }
+}
+
+
 public var MLabel: UILabel {
     UILabel(frame: .zero)
 }
@@ -58,9 +111,6 @@ public var MSearchBar: UISearchBar {
     UISearchBar(frame: .zero)
 }
 
-public var MStackView: UIStackView {
-    UIStackView(frame: .zero)
-}
 
 public var MTabBar: UITabBar {
     UITabBar(frame: .zero)

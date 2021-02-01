@@ -5,21 +5,21 @@
 import Foundation
 import UIKit
 
-
-public func testView() {
-    let view = UIView(frame: .zero)
-    view.layoutConstraint {
-        UILabel(frame: .zero).constraintsBuild {
-            ViewLeft.eq(100)
-            ViewRight.eqParent
-            ViewTop.eq("nameView", .top).multi(2).constant(10)
-        }
-        UILabel(frame: .zero).constraints {
-            $0.centerParent().size(200)
-        }
-    }
-
-}
+//
+//public func testView() {
+//    let view = UIView(frame: .zero)
+//    view.layoutConstraint {
+//        UILabel(frame: .zero).constraintsBuild {
+//            ViewLeft.eq(100)
+//            ViewRight.eqParent
+//            ViewTop.eq("nameView", .top).multi(2).constant(10)
+//        }
+//        UILabel(frame: .zero).constraints {
+//            $0.centerParent().size(200)
+//        }
+//    }
+//
+//}
 
 
 private var _constraint_param_list_key = "_constraint_param_list_"
@@ -110,7 +110,7 @@ public extension UIView {
         for childView in ls {
             addSubview(childView)
         }
-        installChildrenConstaints(viewList)
+        installChildrenConstaints(ls)
     }
 
     func installChildrenConstaints(_ viewList: [UIView]? = nil) {

@@ -18,45 +18,34 @@ class ViewController: UIViewController {
 
 
         self.view.layoutConstraint {
-
-            MLabel.apply { lb in
-                lb.constraints {
-                    $0.centerParent().size(200, 100)
+            VStack(dist: .fillEqually, align: .fill).space(0).arrange {
+                MLabel.apply { lb in
+                    lb.named("a")
+                    lb.alignCenter()
+                    lb.backgroundColor = Colors.background
+                    lb.textColor = Colors.label
+                    lb.font = Font.sys(UIFont.labelFontSize)
+                    lb.text = "AAAAAAA"
                 }
-                lb.named("a")
-                lb.alignCenter()
-                lb.backgroundColor = Colors.backgroundSecondary
-                lb.textColor = Colors.labelSecondary
-                lb.text = "AAAAAAA"
-                lb.font = Font.sys( UIFont.labelFontSize)
-
-            }
-            MLabel.apply { lb in
-                lb.constraints {
-                    $0.size(200, 100).above("a").centerXParent()
+                MLabel.apply { lb in
+                    lb.alignCenter()
+                    lb.backgroundColor = Colors.backgroundSecondary
+                    lb.textColor = Colors.labelSecondary
+                    lb.font = Font.sys(UIFont.labelFontSize)
+                    lb.text = "BBBB"
                 }
-                lb.named("b")
-                lb.alignCenter()
-                lb.backgroundColor = Colors.background
-                lb.textColor = Colors.label
-                lb.text = "BBBBBBB"
-                lb.font = Font.sys( UIFont.labelFontSize + 2)
-            }
-            MLabel.apply { lb in
-                lb.constraints {
-                    $0.size(200, 100).below("a").centerXParent()
+                MLabel.apply { lb in
+                    lb.alignCenter()
+                    lb.backgroundColor = Colors.backgroundTertiary
+                    lb.textColor = Colors.labelTertiary
+                    lb.font = Font.sys(UIFont.labelFontSize)
+                    lb.text = "CCC"
                 }
-                lb.named("c")
-                lb.alignCenter()
-                lb.backgroundColor = Colors.backgroundTertiary
-                lb.textColor = Colors.labelTertiary
-                lb.text = "CCCCCC"
-                lb.font = Font.sys( UIFont.labelFontSize - 2 )
+            }.constraints {
+                $0.centerParent().widthParent(-40).heightParent(-40)
             }
         }
-
         log("LabelText: ", label.text)
-
     }
 
     override func didReceiveMemoryWarning() {
