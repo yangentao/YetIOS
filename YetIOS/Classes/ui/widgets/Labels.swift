@@ -62,7 +62,7 @@ public extension UILabel {
 
     @discardableResult
     func stylePrimary() -> UILabel {
-        self.backgroundColor = .white
+        self.backgroundColor = Colors.fill
         self.textColor = Theme.Text.primaryColor
         self.font = Theme.Text.primaryFont
         return self
