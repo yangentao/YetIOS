@@ -18,6 +18,18 @@ class ViewController: UIViewController {
 
 
         self.view.layoutConstraint {
+
+            VerticalLinear.paddings(left: 20, top: 25 + 20, right: 20, bottom: 20).constraints {
+                $0.fill()
+            }.buildChildren {
+                UILabel.makePrimary.linearParam { param in
+                    param.widthFill().height(60)
+                }.apply { lb in
+                    lb.text = "AAAA"
+                    lb.backgroundColor = .cyan
+                }
+            }
+
             VStack(dist: .fillEqually, align: .fill).space(0).arrange {
                 MLabel.apply { lb in
                     lb.named("a")

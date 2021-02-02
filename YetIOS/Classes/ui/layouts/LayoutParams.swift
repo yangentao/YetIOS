@@ -71,8 +71,20 @@ public class LinearParam {
     }
 
     @discardableResult
+    public func widthWrap() -> LinearParam {
+        self.width = WrapContent
+        return self
+    }
+
+    @discardableResult
     public func heightFill() -> LinearParam {
         self.height = MatchParent
+        return self
+    }
+
+    @discardableResult
+    public func heightWrap() -> LinearParam {
+        self.height = WrapContent
         return self
     }
 
@@ -119,7 +131,7 @@ public extension UIView {
         }
     }
 
-    var lp: LinearParam {
+    var linearParamEnsure: LinearParam {
         if let L = self.linearParam {
             return L
         } else {
@@ -131,7 +143,13 @@ public extension UIView {
 
     @discardableResult
     func lp(_ width: CGFloat, _ height: CGFloat) -> LinearParam {
-        return lp.width(width).height(height)
+        return linearParamEnsure.width(width).height(height)
+    }
+
+    @discardableResult
+    func linearParam(_ block: (LinearParam) -> Void) -> Self {
+        block(linearParamEnsure)
+        return self
     }
 }
 
@@ -142,13 +160,7 @@ public extension UIView {
             return margins?.left ?? 0
         }
         set {
-            if let p = margins {
-                p.left = newValue
-            } else {
-                let p = Edge()
-                p.left = newValue
-                margins = p
-            }
+            marginsEnsure.left = newValue
         }
     }
     var marginTop: CGFloat {
@@ -156,13 +168,7 @@ public extension UIView {
             return margins?.top ?? 0
         }
         set {
-            if let p = margins {
-                p.top = newValue
-            } else {
-                let p = Edge()
-                p.top = newValue
-                margins = p
-            }
+            marginsEnsure.top = newValue
         }
     }
     var marginBottom: CGFloat {
@@ -170,13 +176,7 @@ public extension UIView {
             return margins?.bottom ?? 0
         }
         set {
-            if let p = margins {
-                p.bottom = newValue
-            } else {
-                let p = Edge()
-                p.bottom = newValue
-                margins = p
-            }
+            marginsEnsure.bottom = newValue
         }
     }
     var marginRight: CGFloat {
@@ -184,14 +184,16 @@ public extension UIView {
             return margins?.right ?? 0
         }
         set {
-            if let p = margins {
-                p.right = newValue
-            } else {
-                let p = Edge()
-                p.right = newValue
-                margins = p
-            }
+            marginsEnsure.right = newValue
         }
+    }
+    var marginsEnsure: Edge {
+        if let m = margins {
+            return m
+        }
+        let e = Edge()
+        margins = e
+        return e
     }
     var margins: Edge? {
         get {

@@ -41,32 +41,32 @@ public extension VerticalLayout {
     @discardableResult
     func add(_ v: UIView, _ height: CGFloat) -> LinearParam {
         childViews.append(v)
-        v.lp.height(height)
-        return v.lp
+        v.linearParamEnsure.height(height)
+        return v.linearParamEnsure
     }
 
     @discardableResult
     func add(_ v: UIView) -> LinearParam {
         childViews.append(v)
-        return v.lp
+        return v.linearParamEnsure
     }
 
     var totalHeight: CGFloat {
         return self.childViews.sumBy({
-            $0.marginTop + $0.marginBottom + ($0.lp.height > 0 ? $0.lp.height : self.defaultHeight)
+            $0.marginTop + $0.marginBottom + ($0.linearParamEnsure.height > 0 ? $0.linearParamEnsure.height : self.defaultHeight)
         }) + self.edge.top + self.edge.bottom
     }
 
     func install(_ isScrollContentView: Bool = false) {
         let weightSum: CGFloat = self.childViews.sumBy {
-            $0.lp.weight
+            $0.linearParamEnsure.weight
         }
         for n in childViews.indices {
             let v = childViews[n]
             self.view.addSubview(v)
 
             let L = v.layout
-            let p = v.lp
+            let p = v.linearParamEnsure
             if p.height < 0 {
                 //不支持matchparent 和wrapcontent
                 p.height = defaultHeight
@@ -92,7 +92,7 @@ public extension VerticalLayout {
                 //allspace = parent.height  -  (all.mt + all.mb + all.height + edge.top + edge.bottom)
                 //myheight = allspace * myWeight / weightSum
                 let fixY = self.edge.top + self.edge.bottom + self.childViews.sumBy {
-                    $0.lp.height + $0.marginTop + $0.marginBottom
+                    $0.linearParamEnsure.height + $0.marginTop + $0.marginBottom
                 }
                 // myheight = parent.height * myWeight / weightSum - fixY * myWeight / weightSum
                 let percent = p.weight / weightSum

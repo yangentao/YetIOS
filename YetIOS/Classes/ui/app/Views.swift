@@ -40,8 +40,14 @@ public extension UIView {
         }
         return nil
     }
+}
 
+public extension UIView {
 
+    func backColor(_ color: UIColor) -> Self {
+        self.backgroundColor = color
+        return self
+    }
 }
 
 public extension UIView {
