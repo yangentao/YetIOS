@@ -44,10 +44,66 @@ public extension UIView {
 
 public extension UIView {
 
+    @discardableResult
     func backColor(_ color: UIColor) -> Self {
         self.backgroundColor = color
         return self
     }
+
+    @discardableResult
+    func tag(_ n: Int) -> Self {
+        self.tag = n
+        return self
+    }
+
+    @discardableResult
+    func clipsToBounds(_ b: Bool) -> Self {
+        self.clipsToBounds = b
+        return self
+    }
+
+    @discardableResult
+    func alpha(_ a: CGFloat) -> Self {
+        self.alpha = a
+        return self
+    }
+
+    @discardableResult
+    func opaque(_ b: Bool) -> Self {
+        self.isOpaque = b
+        return self
+    }
+
+    @discardableResult
+    func hidden(_ b: Bool) -> Self {
+        self.isHidden = b
+        return self
+    }
+
+    @discardableResult
+    func contentMode(_ m: UIView.ContentMode) -> Self {
+        self.contentMode = m
+        return self
+    }
+
+    @discardableResult
+    func tintColor(_ c: UIColor) -> Self {
+        self.tintColor = c
+        return self
+    }
+
+    @discardableResult
+    func tintAdjustmentMode(_ m: UIView.TintAdjustmentMode) -> Self {
+        self.tintAdjustmentMode = m
+        return self
+    }
+
+    @discardableResult
+    func translatesAutoresizingMaskIntoConstraints(_ b: Bool) -> Self {
+        self.translatesAutoresizingMaskIntoConstraints = b
+        return self
+    }
+
 }
 
 public extension UIView {

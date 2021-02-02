@@ -11,7 +11,7 @@ import YetIOS
 
 
 class ViewController: UIViewController {
-    lazy var label: UILabel = NamedView(self, "a")
+//    lazy var label: UILabel = NamedView(self, "a")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,43 +22,21 @@ class ViewController: UIViewController {
             VerticalLinear.paddings(left: 20, top: 25 + 20, right: 20, bottom: 20).constraints {
                 $0.fill()
             }.buildChildren {
-                UILabel.makePrimary.linearParam { param in
+                UILabel.Primary.text("AAA").align(.left).backColor(.cyan).linearParam { param in
+                    param.widthFill().weight(1) //.height(60)
+                }
+                UILabel.Primary.text("BBB").align(.center).backColor(.green).marginY(20).linearParam { param in
                     param.widthFill().height(60)
-                }.apply { lb in
-                    lb.text = "AAAA"
-                    lb.backgroundColor = .cyan
+                }
+                UILabel.Primary.text("CCC").align(.right).backColor(.blue).linearParam { param in
+                    param.widthFill().weight(2)//.height(60)
                 }
             }
 
-            VStack(dist: .fillEqually, align: .fill).space(0).arrange {
-                MLabel.apply { lb in
-                    lb.named("a")
-                    lb.alignCenter()
-                    lb.backgroundColor = Colors.fill
-                    lb.textColor = Colors.label
-                    lb.font = Font.sys(UIFont.labelFontSize)
-                    lb.text = "AAAAAAA"
-                }
-                MLabel.apply { lb in
-                    lb.alignCenter()
-                    lb.backgroundColor = Colors.fillSecondary
-                    lb.textColor = Colors.labelSecondary
-                    lb.font = Font.sys(UIFont.labelFontSize)
-                    lb.text = "BBBB"
-                }
-                MLabel.apply { lb in
-                    lb.alignCenter()
-                    lb.backgroundColor = Colors.fillTertiary
-                    lb.textColor = Colors.labelTertiary
-                    lb.font = Font.sys(UIFont.labelFontSize)
-                    lb.text = "CCC"
-                }
-            }.constraints {
-                $0.centerParent().widthParent(-40).heightParent(-40)
-            }
+
         }
         self.view.backgroundColor = Colors.background
-        log("LabelText: ", label.text)
+//        log("LabelText: ", label.text)
     }
 
     override func didReceiveMemoryWarning() {

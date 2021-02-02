@@ -217,9 +217,10 @@ public extension UIView {
         self.marginRight = m
     }
 
-    func marginY(_  m: CGFloat) {
+    func marginY(_  m: CGFloat) -> Self  {
         self.marginTop = m
         self.marginBottom = m
+        return self
     }
 }
 
